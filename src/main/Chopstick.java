@@ -13,8 +13,10 @@ import java.util.concurrent.locks.ReentrantLock;
  *     Philosophers attempt to acquire this using a timed lock attempt with minimal blocking.
  * </p>
  *
- *  <p>This class demonstrates resource contention and synchronization using
- *  {@link ReentrantLock}.</p>
+ * <p>Each chopstick is implemented using a {@link ReentrantLock} to enforce
+ * mutual exclusion. This design approach (timed locking with {@code tryLock})
+ * was inspired by common concurrency patterns found in educational examples
+ * and StackOverflow discussions.</p>
  *
  * @author Sean-Paul Brown
  */
@@ -25,6 +27,7 @@ public class Chopstick {
     private static final int TIME_TO_WAIT_MS = 10;
     /**
      * Lock used to represent ownership of the chopstick.
+     * <p>Use of a ReentrantLock was inspired by StackOverflow and Andrias Zelele</p>
      */
     private final Lock lock = new ReentrantLock();
     /**
