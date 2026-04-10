@@ -12,6 +12,14 @@ package main;
  * Here, multiple threads compete for shared resources, which can lead to issues such as deadlock and starvation.
  * </p>
  *
+ * <p>Inspiration was taken from:
+ * <ul>
+ *      <li><a href="https://codereview.stackexchange.com/a/26007">Stack Exchange</a></li>
+ *      <li><a href="https://github.com/andriastheI/Dining-Philosophers/blob/main/src/DiningPhilosophers.java">
+ *      Andrias Zelele GitHub</a></li>
+ * </ul>
+ * </p>
+ *
  * @author Sean-Paul Brown
  */
 public class MainTable {
