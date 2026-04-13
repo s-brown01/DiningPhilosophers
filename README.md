@@ -57,7 +57,7 @@ This setup can lead to concurrency problems if not managed correctly.
 
 - Each philosopher runs on its own thread
 - Chopsticks are shared resources protected by locks
-- `tryLock` is used to reduce the chance of deadlock by preventing philosophers from blocking indefinitely while waiting for chopsticks.
+- `tryLock` is used to prevents deadlock by preventing philosophers from blocking indefinitely while waiting for chopsticks.
 - Philosophers release chopsticks immediately if they cannot acquire both
 
 ---
@@ -104,7 +104,6 @@ Philosopher-3 => Number of Turns ate = 8
 Philosopher-4 => Number of Turns ate = 4
 ```
 
-
 ## Concepts Demonstrated
 * Multithreading in Java
 * Runnable interface
@@ -112,8 +111,38 @@ Philosopher-4 => Number of Turns ate = 4
 * Deadlock avoidance strategies
 * Shared resource management
 
+
+# Challenges Faced
+## Deadlock Prevention
+One of the biggest challenges faced while building this project was preventing deadlock.
+If each philosopher picks up one chopstick and waits for the other (hold-and-wait), the system will freeze indefinitely. 
+This was addressed by using `tryLock()` with a timeout instead of blocking locks.
+Philosophers will release partially acquired resources and retry to acquire them at a later time rather than becoming stuck.
+
+## Resource Contention
+Another challenge was managing resource contention between threads. 
+Since each chopstick is shared between two philosophers, multiple threads often attempt to acquire the same locks at the same time. 
+This required careful synchronization using `ReentrantLock` to ensure mutual exclusivity: chopsticks can only be held by one philosopher at a time.
+The system can still make progress even while under high contention.
+
+## Starvation
+Although deadlock was avoided, starvation remains a possible edge case. 
+Because there is no strict fairness or scheduling policy in place, some philosophers may occasionally fail to acquire both chopsticks repeatedly, especially under heavy contention. 
+This is an accepted trade-off in favor of simplicity and demonstrating basic concurrency control rather than implementing a more complex fairness mechanism.
+
+This design also respects the No Preemption condition, since chopsticks cannot be forcibly taken. 
+Once acquired, a chopstick remains under the control of the owning philosopher until it is voluntarily released.
+However, this simplicity comes at the cost of fairness guarantees.
+The system does not enforce ordering or prioritization when multiple philosophers compete for a resource.
+Thus, although deadlock is fully eliminated, starvation is still possible.
+
+## Overall 
+More advanced solutions could improve fairness, such as including a resource controller or order resource acquisition.
+However, the current solution balances correctness and simplicity.
+The current implementation keeps the design straightforward while still effectively demonstrating key concurrency concepts such as thread synchronization, shared resource management, and deadlock avoidance.
+
 # Author
-Sean-Paul Brown
+Sean-Paul Brown and Andrias Zelele
 
 ## References
 
@@ -121,5 +150,5 @@ Sean-Paul Brown
   https://codereview.stackexchange.com/a/26007
 
 - Andrias Zelele, GitHub implementation reference  
-  https://github.com/andriastheI/Dining-Philosophers/blob/main/src/DiningPhilosophers.java
+  https://github.com/andriastheI/Dining-Philosophers/tree/main
 
