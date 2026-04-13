@@ -88,19 +88,20 @@ private static final int SIMULATION_MILLIS = 1000 * 10; // 10 seconds
 
 ## Sample Output
 ```
+Philosopher-0 picked up left Chopstick-0
 Philosopher-0 picked up right Chopstick-1
 Philosopher-0 is eating
 Philosopher-4 picked up left Chopstick-4
 Philosopher-4 put down left Chopstick-4
-Philosopher-0 put down right Chopstick-1
-Philosopher-0 put down left Chopstick-0
 Philosopher-2 put down right Chopstick-3
 Philosopher-2 put down left Chopstick-2
-Philosopher-0 => No of Turns to Eat = 5
-Philosopher-1 => No of Turns to Eat = 6
-Philosopher-2 => No of Turns to Eat = 10
-Philosopher-3 => No of Turns to Eat = 5
-Philosopher-4 => No of Turns to Eat = 7
+Philosopher-0 put down right Chopstick-1
+Philosopher-0 put down left Chopstick-0
+Philosopher-0 => Number of Turns ate = 8
+Philosopher-1 => Number of Turns ate = 5
+Philosopher-2 => Number of Turns ate = 6
+Philosopher-3 => Number of Turns ate = 8
+Philosopher-4 => Number of Turns ate = 4
 ```
 
 

@@ -117,7 +117,7 @@ public class MainTable {
         try {
             Thread.sleep(timeToRunMS);
         } catch (InterruptedException e) {
-            System.err.println("Main interrupted");
+            System.err.println("Main Simulation is interrupted");
         }
         
         // tell all the philosophers to stop
@@ -132,7 +132,7 @@ public class MainTable {
         
         // print off some summary stats
         for (Philosopher philosopher : philosophers) {
-            System.out.println(philosopher + " => No of Turns to Eat = " + philosopher.getTurnsWhileEating());
+            System.out.println(philosopher + " => Number of Turns ate = " + philosopher.getTurnsWhileEating());
         }
     }
 }
